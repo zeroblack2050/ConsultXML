@@ -1,5 +1,6 @@
 package com.cosmo.LecturaXML.model;
 
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 @Root(name = "breakfast_menu")
 public class BreakFastMenu {
 
-    @ElementList(entry = "food", inline = false)
+    @ElementList(entry = "food", inline = true)
     ArrayList<Food> foodArrayList;
 
     public ArrayList<Food> getFoodArrayList() {

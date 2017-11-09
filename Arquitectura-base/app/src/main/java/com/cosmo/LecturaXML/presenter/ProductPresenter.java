@@ -86,15 +86,33 @@ public class ProductPresenter extends BasePresenter<IProductView> {
 
     public void consultSimpleXML(){
         BreakFastMenu breakFastMenu = simpleRepository.getBreakFastMenu();
-        Food food = breakFastMenu.getFoodArrayList().get(0);
 
-        Log.e(
-                "BreakFastMenu","\n"+
-                food.getName()+"\n"+
-                food.getPrice()+"\n"+
-                food.getDescription()+"\n"+
-                food.getCalories()+"\n"
-        );
+        for (int i = 0; i < breakFastMenu.getFoodArrayList().size();i++) {
+            Food food = breakFastMenu.getFoodArrayList().get(i);
+            StringBuffer a = new StringBuffer("");
+            a.append("Element: "+(i+1)+"\n");
+            a.append(food.getName()+"\n");
+            a.append(food.getPrice()+"\n");
+            a.append(food.getDescription()+"\n");
+            a.append(food.getCalories());
+            Log.i("BreakFastMenu",a.toString());
+
+        }
+
+        /*for (Food food : breakFastMenu.getFoodArrayList()) {
+            StringBuffer a = new StringBuffer("");
+            a.append("Element: ");
+            a.append(food.getName()+"\n");
+            a.append(food.getPrice()+"\n");
+            a.append(food.getDescription()+"\n");
+            a.append(food.getCalories());
+            Log.i("BreakFastMenu",a.toString());
+        }*/
+
+
+
+
+
     }
 
 }

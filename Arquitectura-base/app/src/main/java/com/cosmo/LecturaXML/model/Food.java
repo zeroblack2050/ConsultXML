@@ -7,7 +7,7 @@ import org.simpleframework.xml.Root;
  * Created by Superadmin1 on 08/11/2017.
  */
 
-@Root(name = "food")
+@Element(name = "food")
 public class Food {
 
     @Element(name ="name")

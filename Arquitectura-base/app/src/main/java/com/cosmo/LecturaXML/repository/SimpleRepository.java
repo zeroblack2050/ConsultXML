@@ -14,7 +14,6 @@ public class SimpleRepository implements ISimpleRepository {
     private IServices services;
 
     public SimpleRepository() {
-
         ServicesFactory servicesFactory = new ServicesFactory(TypeDecryption.XML);
         services = (IServices) servicesFactory.getInstance(IServices.class);
     }
