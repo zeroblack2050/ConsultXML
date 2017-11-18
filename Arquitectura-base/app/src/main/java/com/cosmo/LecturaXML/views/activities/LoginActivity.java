@@ -1,15 +1,20 @@
 package com.cosmo.LecturaXML.views.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cosmo.LecturaXML.R;
 import com.cosmo.LecturaXML.helper.Constants;
+import com.cosmo.LecturaXML.helper.CustomTextView;
 import com.cosmo.LecturaXML.model.CustomSharedPreferences;
 import com.cosmo.LecturaXML.model.User;
 import com.cosmo.LecturaXML.presenter.LoginPresenter;
@@ -33,6 +38,34 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         createProgressDialog();
         loadViews();
         verifyAutoLogin();
+
+        login_btnLogin.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(LoginActivity.this, login_btnLogin);
+                popupMenu.getMenuInflater().inflate(R.menu.popmenu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(LoginActivity.this, "You Clicked: "+item.getTitle(), Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                });
+                popupMenu.show();
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            login_btnLogin.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        }else {
+            login_btnLogin.setBackgroundColor(getResources().getColor(R.color.colorBlack));
+        }
     }
 
     private void verifyAutoLogin() {
